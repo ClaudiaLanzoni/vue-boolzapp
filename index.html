@@ -26,7 +26,12 @@
 </head>
 <body>
     <div id="app">
-
+        <ul>
+            <li v-for="(valore, chiave, index in contacts">
+                <img src="" alt="" v-bind:src="'img/avatar' + valore.avatar + '.jpg'" />
+                <p>{{valore.name}}</p>
+            </li>
+        </ul>
     </div>
 
     <script type="text/javascript" src="javascript/myscript.js"></script>
