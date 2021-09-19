@@ -1,3 +1,7 @@
+body {
+    font-size: 10px;
+}
+
 img {
     width: 50px;
     height:50px;
@@ -5,4 +9,78 @@ img {
 
 ul {
     list-style: none;
+}
+
+.my_contact_bg{
+    background-color: rgb(162, 122, 199);
+}
+
+.my_contact {
+    width: 70px;
+    height: 70px;
+    margin: 20px;
+}
+
+.my_chat_bg {
+    background-color: rgb(201, 184, 143);
+}
+
+.my_msg {
+    padding: 13px;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.msg_sent {
+    background-color: rgb(191, 228, 154);
+   
+}
+
+.msg_received {
+    background-color: white;
+}
+
+.my_deliver_time {
+    font-size: 8px;
+}
+
+.my_grey {
+    color: rgb(173, 169, 169);
+}
+
+.top_bg {
+    background-color: rgb(216, 208, 208);
+}
+
+.my_contact_height {
+    height: 50px;
+}
+
+.notifiche_bg {
+    background-color: dodgerblue;
+}
+
+.my_inline {
+    display: inline-block;
+}
+
+.my_input_size {
+    width: 200px;
+}
+
+.my_br {
+    border-radius: 30px;
+}
+
+.contacts_bg.active {
+    background-color: rgb(219, 208, 208);
+}
+
+.chat_input_bg {
+    background-color: lavender;
+    height: 30px;
+}
+
+.my_input_padding {
+    padding: 5px 10px 15px 10px
 }

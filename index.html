@@ -25,14 +25,130 @@
     <title>Boolzapp</title>
 </head>
 <body>
+    <!--/**Il Milestone 1 include esclusivamente:
+    Nota Bene: non è possibile in nessun caso modificare i dati nell'oggetto contacts da noi fornito.
+    Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco)
+    assegnando due classi CSS diverse
+    Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, 
+    visualizzare nome e immagine di ogni contatto.
+ */-->
+
+
     <div id="app">
-        <ul>
-            <li v-for="(valore, chiave, index in contacts">
-                <img src="" alt="" v-bind:src="'img/avatar' + valore.avatar + '.jpg'" />
-                <p>{{valore.name}}</p>
-            </li>
-        </ul>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-5">
+                    
+                    <div class="top_bg my_contact_height">
+                        <img alt="immagine contatto" v-bind:src="'img/avatar_io.jpg'" class="my_br">
+                        <span class="fw-bold">Nome Utente<span>
+                    
+                        <i class="fas fa-circle-notch my_grey"></i>
+                        <i class="fas fa-comment-alt my_grey"></i>
+                        <i class="fas fa-ellipsis-v my_grey"></i>
+                    
+                    </div>
+                    
+                    <div class="my_contact_height notifiche_bg">
+                        <i class="fas fa-bell-slash text-white"></i>
+                        <div class="my_inline">
+                            <div>Ricevi notifiche di nuovi messaggi</div>
+                            <div class="">Attiva notifiche del desktop</div>
+                        </div>
+                    </div>
+
+                    <div class="my_input_padding">
+                        <i class="fas fa-search my_grey"></i><input type="text" placeholder="Cerca o inizia una nuova chat" class="my_input_size">
+                    </div>
+
+                    <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)" class="contacts_bg" >
+
+
+                        <img alt="immagine contatti" v-bind:src="'img/avatar' + contatto.avatar + '.jpg'" class="my_br" >
+                        <p>{{contatto.name}}</p>
+                        
+        
+                    </div>
+                </div>
+
+                
+
+                <div class="col-7 my_chat_bg" class="my_msg msg_sent position-relative">
+
+                    <div class="top_bg">
+                        <img alt="immagine contatti" v-bind:src="'img/avatar_1.jpg'" class="my_br">
+                        <div class="my_inline">Michele</div>
+                    </div>
+
+                    <!--<p>{{contacts[selectedContact].messages}}</p>
+
+                    <div v-for="(contatto, index) in contacts">
+                        
+                        <div v-for="(valore2, chiave2, index2) in contatto">
+                            
+                            <div v-if="chiave2 === 'messages'">
+
+                                <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
+                                    {{valore3.text}}
+                                    <div class="my_deliver_time my_grey position-absolute bottom-0 end-0">
+                                        {{valore3.date}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>-->
+
+                    <div class="my_contact_height chat_input_bg text-center my_input_padding">
+                        <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" class="my_input_size mx-5"><i class="fas fa-microphone my_grey"></i>
+                    </div>
+
+                    
+
+
+                    
+                    
+
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    <!--<p>{{contacts[selectedContact].messages}}</p>-->
+                    <!--  <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)"  >
+                            <div v-for="(valore2, chiave2, index2) in contatto">
+                                
+                                <div v-if="chiave2 === 'messages'">
+
+                                    <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
+                                        {{valore3.text}}
+                                        <div class="my_deliver_time position-absolute bottom-0 end-0">
+                                            {{valore3.date}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> -->  
+
+
+                        <!--<div v-for="(valore2, chiave2, index2) in contatto">
+                            
+                            <div v-if="valore2 === 'messages'">
+
+                                <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
+                                    {{valore3.text}}
+                                    <div class="my_deliver_time position-absolute bottom-0 end-0">
+                                        {{valore3.date}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>-->
 
     <script type="text/javascript" src="javascript/myscript.js"></script>
 </body>
