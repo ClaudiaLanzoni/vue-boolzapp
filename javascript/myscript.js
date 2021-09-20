@@ -105,7 +105,5 @@ let app = new Vue ({
         selectContact(elementIndex) {
             this.selectedContact = elementIndex;
         },
-
-       
     }
 })

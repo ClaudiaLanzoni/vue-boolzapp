@@ -77,17 +77,26 @@
 
                     <div v-for="(valore, chiave) in contacts[selectedContact]" class="top_bg">
 
+                        <span v-if="chiave == 'name'">
+                            {{valore}}
+                        </span>
+
                         <div v-if="chiave == 'avatar'">
 
                             <img alt="immagine contatti" v-bind:src="'img/avatar' + valore + '.jpg'" 
                                 class="my_br">
 
                         </div>
+                    </div>
 
 
-                   
+                    <div v-for="(messaggio, index) in contacts[selectedContact].messages">
+                        
+                        <div v-if="index == messaggio.length-1">Ultimo accesso oggi alle {{messaggio.date}}</div>
+                        
                     </div>
                 
+
                     <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
                     :class="{ msg_sent: messaggio.status == 'sent', msg_received: messaggio.status == 'received'}">
 
