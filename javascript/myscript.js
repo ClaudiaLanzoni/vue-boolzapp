@@ -98,6 +98,7 @@ let app = new Vue ({
             },
         ],
         selectedContact: 0,
+        
     },
 
     methods: {
@@ -105,5 +106,11 @@ let app = new Vue ({
         selectContact(elementIndex) {
             this.selectedContact = elementIndex;
         },
+
+        renderLastElement(array) {
+            let element = array.slice(-1);
+            return element
+
+        }
     }
 })

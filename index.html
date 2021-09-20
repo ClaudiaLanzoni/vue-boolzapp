@@ -67,7 +67,11 @@
                         <img alt="immagine contatti" v-bind:src="'img/avatar' + contatto.avatar + '.jpg'" class="my_br" >
                         <p>{{contatto.name}}</p>
                         
-        
+                        
+                    </div>
+
+                    <div v-for="(messaggio, index) in contacts[selectedContact].messages">
+                        
                     </div>
                 </div>
 
@@ -92,6 +96,7 @@
 
                     <div v-for="(messaggio, index) in contacts[selectedContact].messages">
                         
+                        <!--dovrebbe essere un while?-->
                         <div v-if="index == messaggio.length-1">Ultimo accesso oggi alle {{messaggio.date}}</div>
                         
                     </div>
