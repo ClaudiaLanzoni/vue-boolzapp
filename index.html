@@ -80,30 +80,18 @@
                         <div class="my_inline">Michele</div>
                     </div>
 
-                    <!--Prima idea-->
-                    <p>{{contacts[selectedContact].messages}}</p>
-
-
-                    <!--seconda idea-->
-                    <div v-for="(contatto, index) in contacts">
+                    
+                    <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" :class="{ msg_sent: contacts[selectedContact].messages.status === 'sent', msg_received: contacts[selectedContact].messages.status != 'sent'}">
                         
-                        <div v-for="(valore2, chiave2, index2) in contatto">
-                            
-                            <div v-if="chiave2 === 'messages'">
-
-                                <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
-                                    {{valore3.text}}
-                                    <div class="my_deliver_time my_grey position-absolute bottom-0 end-0">
-                                        {{valore3.date}}
-                                    </div>
-                                </div>
-
-                            </div>
+                        {{messaggio.text}}
+                        
+                        <div class="my_deliver_time position-absolute bottom-0 end-0">
+                            {{messaggio.date}}
                         </div>
-                        
                     </div>
 
-                    <div class="my_contact_height chat_input_bg text-center my_input_padding">
+
+                    <div class="my_contact_height chat_input_bg text-center my_input_padding position-absolute bottom-0">
                         <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" class="my_input_size mx-5"><i class="fas fa-microphone my_grey"></i>
                     </div>
 
