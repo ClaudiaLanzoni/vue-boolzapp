@@ -75,19 +75,28 @@
 
                 <div class="col-7 my_chat_bg" class="my_msg msg_sent position-relative">
 
-                    <div class="top_bg">
-                        <img alt="immagine contatti" v-bind:src="'img/avatar_1.jpg'" class="my_br">
-                        <div class="my_inline">Michele</div>
-                    </div>
+                    <div v-for="(valore, chiave) in contacts[selectedContact]" class="top_bg">
 
-                    
-                    <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" :class="{ msg_sent: contacts[selectedContact].messages.status === 'sent', msg_received: contacts[selectedContact].messages.status != 'sent'}">
-                        
+                        <div v-if="chiave == 'avatar'">
+
+                            <img alt="immagine contatti" v-bind:src="'img/avatar' + valore + '.jpg'" 
+                                class="my_br">
+
+                        </div>
+
+
+                   
+                    </div>
+                
+                    <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
+                    :class="{ msg_sent: messaggio.status == 'sent', msg_received: messaggio.status == 'received'}">
+
                         {{messaggio.text}}
                         
-                        <div class="my_deliver_time position-absolute bottom-0 end-0">
-                            {{messaggio.date}}
-                        </div>
+                            <div class="my_deliver_time position-absolute bottom-0 end-0">
+                                {{messaggio.date}}
+                            </div>
+                        </span>
                     </div>
 
 
@@ -96,12 +105,12 @@
                     </div>
 
                     
-
+            </div>
 
                     
                     
 
-                </div>
+                
             </div>
         </div>
     </div>
