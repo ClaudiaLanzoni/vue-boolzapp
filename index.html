@@ -29,7 +29,7 @@
 
     <div id="app">
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-2">
                 <div class="col-5">
 
     <!--Aside sinistro-->               
@@ -81,7 +81,7 @@
 
         <!--Header con avatar, nome e ultimo accesso del contatto selezionato-->
 
-                <div class="col-7 my_chat_bg" class="my_msg msg_sent position-relative">
+                <div class="col-7 my_chat_bg" class="my_msg msg_sent">
 
                     <div class="top_bg">
 
@@ -113,11 +113,10 @@
                         {{renderLastElement(selectedContact).messaggio}}
                 
                     </div>
-
-
+                    
         <!--Sezione inserimento messaggio chat con risposta automatica-->
 
-                    <div class="my_contact_height chat_input_bg text-center my_input_padding position-absolute bottom-0">
+                    <div class="my_contact_height chat_input text-center my_input_padding">
                         <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" v-model="inputLine.text" @keyup.enter="addTextToChat(), addReplyToChat()" class="my_input_size mx-5">
                         <i class="fas fa-microphone my_grey"></i>
 
