@@ -25,20 +25,15 @@
     <title>Boolzapp</title>
 </head>
 <body>
-    <!--/**Il Milestone 1 include esclusivamente:
-    Nota Bene: non è possibile in nessun caso modificare i dati nell'oggetto contacts da noi fornito.
-    Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco)
-    assegnando due classi CSS diverse
-    Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, 
-    visualizzare nome e immagine di ogni contatto.
- */-->
 
 
     <div id="app">
         <div class="container">
             <div class="row mt-5">
                 <div class="col-5">
-                    
+
+    <!--Aside sinistro-->               
+
                     <div class="top_bg my_contact_height">
                         <img alt="immagine contatto" v-bind:src="'img/avatar_io.jpg'" class="my_br">
                         <span class="fw-bold">Nome Utente<span>
@@ -56,11 +51,19 @@
                             <div class="">Attiva notifiche del desktop</div>
                         </div>
                     </div>
-
+            
+                <!-- Sezione di ricerca chat per nome contatto--> 
+            
                     <div class="my_input_padding">
-                        <i class="fas fa-search my_grey"></i><input type="text" placeholder="Cerca o inizia una nuova chat" class="my_input_size">
+                        <i class="fas fa-search my_grey"></i><input type="text" placeholder="Cerca o inizia una nuova chat"  v-model="inputContactSearch" class="my_input_size">
+                        <div class="fw-bold">Contatti trovati:</div>
+                        <div v-for="input in filterScript">
+                            <div>{{inputContactSearch}} -- {{input.name}}</div>
+                        </div>
                     </div>
 
+                <!--Sezione contatti con avatar, nome e ultimo messaggio inviato di tutti i contatti presenti-->
+                
                     <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)" class="contacts_bg" >
 
 
@@ -70,12 +73,13 @@
                         
                     </div>
 
-                    <div v-for="(messaggio, index) in contacts[selectedContact].messages">
-
-                    </div>
+                    <div v-for="(messaggio, index) in contacts[selectedContact].messages"></div>
                 </div>
 
                 
+    <!--Aside destro contenente chat-->
+
+        <!--Header con avatar, nome e ultimo accesso del contatto selezionato-->
 
                 <div class="col-7 my_chat_bg" class="my_msg msg_sent position-relative">
 
@@ -94,6 +98,7 @@
 
                     </div>
                 
+        <!--Sezione di stampa chat in base al contatto selezionato con divisione colori in base allo stato del messaggio-->
 
                     <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
                     :class="{ msg_sent: (messaggio.status == 'sent'), msg_received: (messaggio.status == 'received')}">
@@ -109,18 +114,14 @@
                 
                     </div>
 
+
+        <!--Sezione inserimento messaggio chat con risposta automatica-->
+
                     <div class="my_contact_height chat_input_bg text-center my_input_padding position-absolute bottom-0">
                         <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" v-model="inputLine.text" @keyup.enter="addTextToChat(), addReplyToChat()" class="my_input_size mx-5">
                         <i class="fas fa-microphone my_grey"></i>
 
-
-                        
                     </div>
-
-
-                     <!--Il Milestone 3 include esclusivamente:
-                        Risposta dall’interlocutore: ad ogni inserimento di un messaggio, 
-                        l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.-->
                 </div>    
             </div>    
         </div>

@@ -29,15 +29,17 @@ ul {
     padding: 13px;
     width: 400px;
     border-radius: 15px;
+    margin: 10px;
 }
 
 .msg_sent {
     background-color: rgb(191, 228, 154);
-   
+    float: right;
 }
 
 .msg_received {
     background-color: white;
+    float: left;
 }
 
 .my_deliver_time {
@@ -57,7 +59,7 @@ ul {
 }
 
 .notifiche_bg {
-    background-color: dodgerblue;
+    background-color: rgb(157, 206, 255);
 }
 
 .my_inline {

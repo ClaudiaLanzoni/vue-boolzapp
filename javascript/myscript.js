@@ -91,10 +91,9 @@ let app = new Vue ({
             },
         ],
         selectedContact: 0,
-        
 
         inputLine: {
-            date : new Date(),
+            date : new Date,
             text: "",
             status : 'sent'
         },
@@ -103,7 +102,9 @@ let app = new Vue ({
             date : new Date(),
             text : "ok",
             status : 'received'
-        } 
+        },
+
+        inputContactSearch : ""
     },
 
     methods: {
@@ -125,14 +126,25 @@ let app = new Vue ({
             }
         },
 
-        addReplyToChat() {
-            setTimeout(this.createReplyToChat, 1000);
-        },
-
         createReplyToChat() {
             if (this.contacts[this.selectedContact].messages.push(this.inputLine)) {
             this.contacts[this.selectedContact].messages.push(this.automaticReply)
             }
+        },
+
+        addReplyToChat() {
+            setTimeout(this.createReplyToChat, 1000);
+        },   
+    },
+
+    computed : {
+        
+        filterScript: function(){
+            return this.contacts.filter((input) => {
+                return input.name.toLowerCase().match(this.inputContactSearch);
+            });
         }
     }
+
+
 })
