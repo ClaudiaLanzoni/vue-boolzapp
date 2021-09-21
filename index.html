@@ -66,12 +66,12 @@
 
                         <img alt="immagine contatti" v-bind:src="'img/avatar' + contatto.avatar + '.jpg'" class="my_br" >
                         <p>{{contatto.name}}</p>
-                        
+                        <div >{{renderLastElement(index).text}}</div>
                         
                     </div>
 
                     <div v-for="(messaggio, index) in contacts[selectedContact].messages">
-                        
+
                     </div>
                 </div>
 
@@ -79,31 +79,24 @@
 
                 <div class="col-7 my_chat_bg" class="my_msg msg_sent position-relative">
 
-                    <div v-for="(valore, chiave) in contacts[selectedContact]" class="top_bg">
+                    <div class="top_bg">
 
-                        <span v-if="chiave == 'name'">
-                            {{valore}}
-                        </span>
+                        <span>
+                            {{contacts[selectedContact].name}}
+                        </span>                       
 
-                        <div v-if="chiave == 'avatar'">
-
-                            <img alt="immagine contatti" v-bind:src="'img/avatar' + valore + '.jpg'" 
+                        <div>
+                            <img alt="immagine contatti" v-bind:src="'img/avatar' + contacts[selectedContact].avatar + '.jpg'" 
                                 class="my_br">
-
                         </div>
-                    </div>
 
+                        <div>Ultimo accesso oggi alle {{renderLastElement(selectedContact).date}}</div> 
 
-                    <div v-for="(messaggio, index) in contacts[selectedContact].messages">
-                        
-                        <!--dovrebbe essere un while?-->
-                        <div v-if="index == messaggio.length-1">Ultimo accesso oggi alle {{messaggio.date}}</div>
-                        
                     </div>
                 
 
                     <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
-                    :class="{ msg_sent: messaggio.status == 'sent', msg_received: messaggio.status == 'received'}">
+                    :class="{ msg_sent: (messaggio.status == 'sent'), msg_received: (messaggio.status == 'received')}">
 
                         {{messaggio.text}}
                         
@@ -111,58 +104,27 @@
                                 {{messaggio.date}}
                             </div>
                         </span>
-                    </div>
 
+                        {{renderLastElement(selectedContact).messaggio}}
+                
+                    </div>
 
                     <div class="my_contact_height chat_input_bg text-center my_input_padding position-absolute bottom-0">
-                        <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" class="my_input_size mx-5"><i class="fas fa-microphone my_grey"></i>
+                        <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" v-model="inputLine.text" @keyup.enter="addTextToChat(), addReplyToChat()" class="my_input_size mx-5">
+                        <i class="fas fa-microphone my_grey"></i>
+
+
+                        
                     </div>
 
-                    
-            </div>
 
-                    
-                    
-
-                
-            </div>
+                     <!--Il Milestone 3 include esclusivamente:
+                        Risposta dall’interlocutore: ad ogni inserimento di un messaggio, 
+                        l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.-->
+                </div>    
+            </div>    
         </div>
     </div>
-
-
-
-    <!--<p>{{contacts[selectedContact].messages}}</p>-->
-                    <!--  <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)"  >
-                            <div v-for="(valore2, chiave2, index2) in contatto">
-                                
-                                <div v-if="chiave2 === 'messages'">
-
-                                    <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
-                                        {{valore3.text}}
-                                        <div class="my_deliver_time position-absolute bottom-0 end-0">
-                                            {{valore3.date}}
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div> -->  
-
-
-                        <!--<div v-for="(valore2, chiave2, index2) in contatto">
-                            
-                            <div v-if="valore2 === 'messages'">
-
-                                <div v-for="(valore3, chiave3, index3) in valore2" class="my_msg msg_sent position-relative" v-bind:class="{ msg_sent: valore3.status === 'sent', msg_received: valore3.status !== 'sent'}">
-                                    {{valore3.text}}
-                                    <div class="my_deliver_time position-absolute bottom-0 end-0">
-                                        {{valore3.date}}
-                                    </div>
-                                </div>
-
-                            </div>
-                            
-                        </div>-->
 
     <script type="text/javascript" src="javascript/myscript.js"></script>
 </body>

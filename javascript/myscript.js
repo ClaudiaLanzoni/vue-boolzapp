@@ -1,10 +1,3 @@
-    /**Il Milestone 1 include esclusivamente:
-    Nota Bene: non è possibile in nessun caso modificare i dati nell'oggetto contacts da noi fornito.
-    Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco)
-    assegnando due classi CSS diverse
-    Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, 
-    visualizzare nome e immagine di ogni contatto.
- */
 
 
 let app = new Vue ({
@@ -99,6 +92,18 @@ let app = new Vue ({
         ],
         selectedContact: 0,
         
+
+        inputLine: {
+            date : new Date(),
+            text: "",
+            status : 'sent'
+        },
+
+        automaticReply : {
+            date : new Date(),
+            text : "ok",
+            status : 'received'
+        } 
     },
 
     methods: {
@@ -107,10 +112,27 @@ let app = new Vue ({
             this.selectedContact = elementIndex;
         },
 
-        renderLastElement(array) {
-            let element = array.slice(-1);
-            return element
+        renderLastElement(index) {
+            let contactMessages = this.contacts[index].messages;
+            return contactMessages[contactMessages.length -1]
 
+        },
+
+        addTextToChat() {
+            if (this.inputLine.text.trim('').length > 0) {
+                this.contacts[this.selectedContact].messages.push(this.inputLine);
+                this.inputLine = '';
+            }
+        },
+
+        addReplyToChat() {
+            setTimeout(this.createReplyToChat, 1000);
+        },
+
+        createReplyToChat() {
+            if (this.contacts[this.selectedContact].messages.push(this.inputLine)) {
+            this.contacts[this.selectedContact].messages.push(this.automaticReply)
+            }
         }
     }
 })
