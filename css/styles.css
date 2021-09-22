@@ -1,5 +1,5 @@
 body {
-    font-size: 10px;
+    font-size: 9px;
 }
 
 img {
@@ -11,8 +11,39 @@ ul {
     list-style: none;
 }
 
-.my_contact_bg{
-    background-color: rgb(162, 122, 199);
+.icons_top {
+  padding: 17px 10px 0 0 ;
+  float: right;
+}
+
+.icon_circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: white;
+    margin-left: 20px;
+}
+
+.icon_bell_circle {
+    position:absolute;
+    top:30%;
+    left:30%;
+}
+
+.my_small_text {
+    font-size: 8px;
+}
+
+.my_big_text {
+    font-size: 11px;
+}
+
+.my_fix_margin_left {
+    margin-left: -100px;
+}
+
+.my_fix_margin_left_180 {
+    margin-left: -180px;
 }
 
 .my_contact {
@@ -22,28 +53,28 @@ ul {
 }
 
 .my_chat_bg {
-    background-color: rgb(201, 184, 143);
+    background-image: url(https://i.redd.it/qwd83nc4xxf41.jpg);
 }
 
 .my_msg {
-    padding: 13px;
-    width: 350px;
-    border-radius: 15px;
-    margin: 10px;
+    width: 100%;
+    border-radius: 10px;
 }
 
 .msg_sent {
+    width: 350px;
+    padding: 13px;
+    margin: 10px;
     background-color: rgb(191, 228, 154);
     float: right;
 }
 
 .msg_received {
+    width: 350px;
+    padding: 13px;
+    margin: 10px;
     background-color: white;
     float: left;
-}
-
-.my_deliver_time {
-    font-size: 8px;
 }
 
 .my_grey {
@@ -58,8 +89,12 @@ ul {
     height: 50px;
 }
 
-.notifiche_bg {
+.my_light_blue {
     background-color: rgb(157, 206, 255);
+}
+
+.fa-bell-slash {
+    color: rgb(157, 206, 255);
 }
 
 .my_inline {
@@ -67,11 +102,20 @@ ul {
 }
 
 .my_input_size {
-    width: 200px;
+    width: 310px;
+    border-color: rgb(219, 219, 219);
 }
 
 .my_br {
-    border-radius: 30px;
+    border-radius: 25px;
+}
+
+.my_padd_top_right {
+    padding: 5px 5px 0 0 ;
+}
+
+.my_padd_bottom_right {
+    padding: 0 5px 5px 0;
 }
 
 .contacts_bg.active {

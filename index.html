@@ -28,99 +28,114 @@
 
 
     <div id="app">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row mt-2">
                 <div class="col-5">
 
     <!--Aside sinistro-->               
 
                     <div class="top_bg my_contact_height">
+                        
                         <img alt="immagine contatto" v-bind:src="'img/avatar_io.jpg'" class="my_br">
-                        <span class="fw-bold">Nome Utente<span>
-                    
-                        <i class="fas fa-circle-notch my_grey"></i>
-                        <i class="fas fa-comment-alt my_grey"></i>
-                        <i class="fas fa-ellipsis-v my_grey"></i>
-                    
+                        <span class="fw-bold">Claudia<span>
+                        
+                        <div class="icons_top align-self-center">
+                            <i class="fas fa-circle-notch my_grey"></i>
+                            <i class="fas fa-comment-alt my_grey mx-2"></i>
+                            <i class="fas fa-ellipsis-v my_grey"></i>
+                        </div>
                     </div>
                     
-                    <div class="my_contact_height notifiche_bg">
-                        <i class="fas fa-bell-slash text-white"></i>
-                        <div class="my_inline">
-                            <div>Ricevi notifiche di nuovi messaggi</div>
-                            <div class="">Attiva notifiche del desktop</div>
+                    <div class="my_contact_height my_light_blue position-relative">
+
+                        <div class="icon_circle position-relative">
+                            <i class="fas fa-bell-slash icon_bell_circle"></i>    
+                        </div>
+                    
+                        <div class="position-absolute top-50 start-50 translate-middle-y my_fix_margin_left">
+
+                            <div class="fw-bold">Ricevi notifiche di nuovi messaggi</div>
+
+                            <div class="my_grey my_small_text text-decoration-underline">Attiva notifiche del desktop</div>
                         </div>
                     </div>
             
+                
+
                 <!-- Sezione di ricerca chat per nome contatto--> 
             
                     <div class="my_input_padding">
-                        <i class="fas fa-search my_grey"></i><input type="text" placeholder="Cerca o inizia una nuova chat"  v-model="inputContactSearch" class="my_input_size">
-                        <div class="fw-bold">Contatti trovati:</div>
+                        <i class="fas fa-search my_grey"></i> <input type="text" placeholder="Cerca o inizia una nuova chat"  v-model="inputContactSearch" class="my_input_size my_small_text">
+                        <div class="fw-bold mt-2">Contatti trovati:</div>
                         <div v-for="input in filterScript">
-                            <div>{{inputContactSearch}} -- {{input.name}}</div>
+                            {{inputContactSearch}} -- {{input.name}}
                         </div>
                     </div>
 
                 <!--Sezione contatti con avatar, nome e ultimo messaggio inviato di tutti i contatti presenti-->
                 
-                    <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)" class="contacts_bg" >
+                    <div v-for="(contatto, index) in contacts" :class="{active : index === selectedContact}" @click="selectContact(index)" class="contacts_bg position-relative" >
 
+                        <img alt="immagine contatti" v-bind:src="'img/avatar' + contatto.avatar + '.jpg'" class="my_br">
+                    
+                        <div class="position-absolute top-50 start-50 translate-middle-y my_fix_margin_left">
+                            <div class="fw-bold my_big_text">{{contatto.name}}</div>
 
-                        <img alt="immagine contatti" v-bind:src="'img/avatar' + contatto.avatar + '.jpg'" class="my_br" >
-                        <p>{{contatto.name}}</p>
-                        <div >{{renderLastElement(index).text}}</div>
-                        
+                            <div>{{renderLastElement(index).text}}...</div>
+                        </div>  
+
+                        <div class="my_small_text position-absolute top-0 end-0 my_padd_top_right my_grey">{{renderLastElement(index).date}}</div>
                     </div>
-
-                    <div v-for="(messaggio, index) in contacts[selectedContact].messages"></div>
                 </div>
 
                 
     <!--Aside destro contenente chat-->
 
         <!--Header con avatar, nome e ultimo accesso del contatto selezionato-->
+ 
+                <div class="col-7 my_chat_bg fix_padding" >
 
-                <div class="col-7 my_chat_bg" class="my_msg msg_sent">
-
-                    <div class="top_bg">
-
-                        <span>
-                            {{contacts[selectedContact].name}}
-                        </span>                       
-
-                        <div>
-                            <img alt="immagine contatti" v-bind:src="'img/avatar' + contacts[selectedContact].avatar + '.jpg'" 
-                                class="my_br">
-                        </div>
-
-                        <div>Ultimo accesso oggi alle {{renderLastElement(selectedContact).date}}</div> 
-
-                    </div>
-                
-        <!--Sezione di stampa chat in base al contatto selezionato con divisione colori in base allo stato del messaggio-->
-
-                    <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
-                    :class="{ msg_sent: (messaggio.status == 'sent'), msg_received: (messaggio.status == 'received')}">
-
-                        {{messaggio.text}}
-                        
-                            <div class="my_deliver_time position-absolute bottom-0 end-0">
-                                {{messaggio.date}}
-                            </div>
-                        </span>
-
-                        {{renderLastElement(selectedContact).messaggio}}
-                
-                    </div>
+                    <div class="my_msg">
                     
-        <!--Sezione inserimento messaggio chat con risposta automatica-->
+                        <div class="top_bg position-relative">                      
 
-                    <div class="my_contact_height chat_input text-center my_input_padding">
-                        <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" v-model="inputLine.text" @keyup.enter="addTextToChat(), addReplyToChat()" class="my_input_size mx-5">
-                        <i class="fas fa-microphone my_grey"></i>
+                            <div>
+                                <img alt="immagine contatti" v-bind:src="'img/avatar' + contacts[selectedContact].avatar + '.jpg'" 
+                                    class="my_br">
+                            </div>
 
-                    </div>
+                            <div class="position-absolute top-50 start-50 translate-middle-y my_fix_margin_left_180">    
+
+                                <div class="my_big_text fw-bold">{{contacts[selectedContact].name}}</div> 
+
+                                <div>Ultimo accesso oggi alle {{renderLastElement(selectedContact).date}}</div> 
+                            </div> 
+                            
+                        </div>
+                        
+                    
+            <!--Sezione di stampa chat in base al contatto selezionato con divisione colori in base allo stato del messaggio-->
+
+                        <div v-for="(messaggio, index) in contacts[selectedContact].messages" class="my_msg position-relative" 
+                        :class="{ msg_sent: (messaggio.status == 'sent'), msg_received: (messaggio.status == 'received')}">
+
+                            {{messaggio.text}}
+                            
+                                <div class="my_small_text position-absolute bottom-0 end-0 my_padd_bottom_right my_grey">
+                                    {{messaggio.date}}
+                                </div>
+
+                            {{renderLastElement(selectedContact).messaggio}}
+                    
+                        </div>
+                    </div>    
+            <!--Sezione inserimento messaggio chat con risposta automatica-->
+
+                        <div class="my_contact_height chat_input text-center my_input_padding">
+                            <i class="far fa-smile my_grey"></i><input type="text" placeholder="Scrivi messaggio" v-model="inputLine.text" @keyup.enter="addTextToChat(), addReplyToChat()" class="my_input_size mx-5">
+                            <i class="fas fa-microphone my_grey"></i>
+
+                        </div>   
                 </div>    
             </div>    
         </div>
